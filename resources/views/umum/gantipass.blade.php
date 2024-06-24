@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="196x196" href="{{asset('img/logo.png')}}">
-
+  
     <title>{{LEMBAGA}}</title>
 
     <!-- Custom fonts for this template-->
@@ -54,7 +54,7 @@
                                                Ganti Password
                                             </h2>
                                           </div>
-                                          @if ($errors->any())
+                                           @if ($errors->any())
                                             <div class="alert alert-danger">
                                                 <ul>
                                                     @foreach ($errors->all() as $error)

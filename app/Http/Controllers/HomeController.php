@@ -45,7 +45,7 @@ class HomeController extends Controller
             $divisi = Auth::user()->divisi;
             if(Auth::user()->status == '7' || Auth::user()->status == '0'|| Auth::user()->status == '4'|| Auth::user()->status == '1'){
                 $infoBmt = AnggotaBMT::select(DB::raw('sum(saldo_bmt) as nominal_bmt'),DB::raw('sum(saldo_wadiah) as nominal_wadiah'),)
-                // ->where('sts_anggota',0)
+                ->where('sts_anggota',0)
                 ->first();
                 $infoPinjaman = PinjamanBmt::select(DB::raw('sum(nominal) as total_pinjaman'),)
                 // ->where('sts_pinjaman', '=', 1 )

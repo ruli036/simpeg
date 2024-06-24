@@ -216,11 +216,10 @@
                                                     <i class="far fa-building"></i>
                                                     <span>Divisi</span>
                                                     <select class="form-control   @error('divisi') is-invalid @enderror " name="divisi" id="inputGroupSelect01" required>
-                                                        <option value="DAYCARE"@if ($datauser->divisi=='DAYCARE') selected @endif>DAYCARE</option>
-                                                        <option value="KB-TK"@if ($datauser->divisi=='KB-TK') selected @endif>KB-TK</option>
-                                                      <option value="SD"@if ($datauser->divisi=='SD') selected @endif>SD</option>
-                                                      <option value="SMP"@if ($datauser->divisi=='SMP') selected @endif>SMP</option>
-                                                      <option value="YAYASAN"@if ($datauser->divisi=='YAYASAN') selected @endif>YAYASAN</option>
+                                                        @foreach ($divisi as $item)
+                                                        <option value="{{$item->Id}}" @if ($datauser->divisi == $item->nama || $datauser->Id_divisi == $item->Id ) selected @endif>{{$item->nama}}</option>
+                                                      @endforeach
+                                                        
                                                     </select>
                                                     @error('divisi')
                                                     <span class="invalid-feedback" role="alert">

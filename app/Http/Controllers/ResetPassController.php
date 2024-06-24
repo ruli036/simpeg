@@ -30,7 +30,7 @@ class ResetPassController extends Controller
 
         $waktu_request = Carbon::createFromFormat('Y-m-d H:i:s', $time);
         $waktu_expire = $waktu_request;
-        $waktu_expire->addMinutes(5);
+        $waktu_expire->addMinutes(60);
         if(now() >= $waktu_expire ){
             return "Link Expired";
         }else{

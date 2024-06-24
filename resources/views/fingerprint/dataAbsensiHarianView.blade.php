@@ -55,9 +55,11 @@
                                             <th>Profile</th>
                                             <th>INFO</th>
                                             <th>Tanggal</th>
-                                            <th>Jam Masuk</th>
+                                            <th>Pagi</th>
                                             <th>Telat Masuk</th>
-                                            <th>Jam Pulang</th>
+                                            <th>Siang</th>
+                                            <th>Telat Kembali</th>
+                                            <th>Sore</th>
                                             <th>Cepat Pulang</th>
                                             <th>Status Karyawan</th>
                                         </tr>
@@ -98,6 +100,17 @@
                                                     @else
                                                         0 seconds
                                                     @endif</td>
+                                                  
+                                                 <td> 
+                                                    {{$datas->jam_siang}}
+                                                </td>
+                                                <td class="@if($datas->telat_kembali != 0) bg-warning text-light @endif"> 
+                                                    @if ($datas->telat_kembali != 0) 
+                                                    {{totalTerlambat($datas->telat_kembali)}}
+                                                    @else
+                                                        0 seconds
+                                                    @endif
+                                                </td>
                                                   <td>
                                                     {{$datas->jam_pulang    }}
                                                 </td>

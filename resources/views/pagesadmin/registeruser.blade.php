@@ -120,7 +120,7 @@
                                             @enderror
                                             </div>
                                             <div class="form-group">
-                                                <select class="form-control @error('lulusan')is-invalid @enderror" id="type" name="lulusan"   id="inputGroupSelect01" required>
+                                                <select class="form-control @error('lulusan')is-invalid @enderror" id="type" name="lulusan" required>
                                                   <option disabled selected value="0">Lulusan...</option>
                                                   <option value="SMA"{{old('lulusan')=="SMA"? 'selected':''}}>SMA</option>
                                                   <option value="STM"{{old('lulusan')=="STM"? 'selected':''}}>STM</option>
@@ -142,22 +142,21 @@
                                               </div>    
                                              
                                               <div class="form-group">
-                                                <select class="form-control @error('divisi')is-invalid @enderror" id="type" value="{{ old('divisi') }}"  name="divisi" id="inputGroupSelect01" required>
+                                                <select class="form-control @error('divisi')is-invalid @enderror" id="divisi"  name="divisi"  required>
                                                   <option disabled  selected value="0">Piliih Divisi...</option>
-                                                  <option value="DAYCARE"{{old('divisi')=="DAYCARE"? 'selected':''}}>DAYCARE</option>
-                                                  <option value="KB-TK"{{old('divisi')=="KB-TK"? 'selected':''}}>KB-TK</option>
-                                                  <option value="SD"{{old('divisi')=="SD"? 'selected':''}}>SD</option>
-                                                  <option value="SMP"{{old('divisi')=="SMP"? 'selected':''}}>SMP</option>
-                                                  <option value="YAYASAN"{{old('divisi')=="YAYASAN"? 'selected':''}}>YAYASAN</option>
+                                                  @foreach ($divisi as $item)
+                                                    <option value="{{$item->Id}}"{{old('divisi')==$item->nama? 'selected':''}}>{{$item->nama}}</option>
+                                                  @endforeach
                                                 </select>
+                                                @error('divisi')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                              @enderror
                                               </div>
-                                              @error('divisi')
-                                              <span class="invalid-feedback" role="alert">
-                                                  <strong>{{ $message }}</strong>
-                                              </span>
-                                          @enderror
+                                            
                                                <div class="form-group">
-                                                <select class="form-control @error('status_karyawan')is-invalid @enderror" id="type"  value="{{ old('status_karyawan') }}"  name="status_karyawan" id="inputGroupSelect01" required>
+                                                <select class="form-control @error('status_karyawan')is-invalid @enderror" id="status_karyawan"  name="status_karyawan"  required>
                                                   <option disabled  selected value="0">Status Karyawan... </option>
                                                   <option value="GTY"{{old('status_karyawan')=="GTY"? 'selected':''}}>Guru Tetap Yayasan</option>
                                                   <option value="GTTY"{{old('status_karyawan')=="GTTY"? 'selected':''}}>Guru Tidak Tetap Yayasan</option>
@@ -166,25 +165,27 @@
                                                   <option value="KTTY"{{old('status_karyawan')=="KTTY"? 'selected':''}}>Karyawan Tidak Tetap Yayasan</option>
                                                   <option value="TR"{{old('status_karyawan')=="TR"? 'selected':''}}>Training</option>
                                                 </select>
+                                                @error('status_karyawan')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                               </div>
-                                              @error('status_karyawan')
-                                              <span class="invalid-feedback" role="alert">
-                                                  <strong>{{ $message }}</strong>
-                                              </span>
-                                          @enderror
+                                             
                                               <div class="form-group">
-                                                <select class="form-control text-capitalize @error('jabatan')is-invalid @enderror" id="type" name="jabatan" id="inputGroupSelect01" required>
+                                                <select class="form-control text-capitalize @error('jabatan')is-invalid @enderror" id="jabatan" name="jabatan"  required>
                                                     <option disabled selected value="0">Piliih Jabatan...</option>
                                                     @foreach ($jabatan as $item)
                                                     <option class="text-capitalize" value="{{$item->id_jabatan}}" {{old('jabatan')== $item->id_jabatan ? 'selected':''}}>{{$item->jabatan}}</option>
                                                     @endforeach
                                                  </select>
+                                                 @error('jabatan')
+                                                 <span class="invalid-feedback" role="alert">
+                                                     <strong>{{ $message }}</strong>
+                                                 </span>
+                                               @enderror
                                               </div>
-                                              @error('jabatan')
-                                              <span class="invalid-feedback" role="alert">
-                                                  <strong>{{ $message }}</strong>
-                                              </span>
-                                            @enderror
+                                             
                                         
                                             <button id="go" type="submit" class="btn btn-primary btn-user btn-block">
                                                 {{ __('Register Account') }}

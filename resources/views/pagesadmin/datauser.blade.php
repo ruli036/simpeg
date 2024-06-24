@@ -31,16 +31,16 @@
                                 @endif
                             </div>
                             <div class="col-md-4 ml-auto">
-                                {{-- <form action="{{url('searchuser')}}" autocomplete="on" class="text-end">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <input type="text" name="cari" required value="<?=$keyword?>" class="form-control" placeholder="Pencarian">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        </div>
-                                    </div>
-                                </form> --}}
+                                <!--<form action="{{url('searchuser')}}" autocomplete="on" class="text-end">-->
+                                <!--    <div class="row">-->
+                                <!--        <div class="col-md-10">-->
+                                <!--            <input type="text" name="cari"  value="<?=$keyword?>" class="form-control" placeholder="Pencarian">-->
+                                <!--        </div>-->
+                                <!--        <div class="col-md-2">-->
+                                <!--            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search" aria-hidden="true"></i></button>-->
+                                <!--        </div>-->
+                                <!--    </div>-->
+                                <!--</form>-->
                             </div>
                         </div>
                         
@@ -53,7 +53,7 @@
                        
                         <div class="card-body">
                             <div class="table-responsive table table-striped">
-                                <table class="table table-sm table-bordered text-capitalize" id="" width="100%" cellspacing="0">
+                                <table class="table table-sm table-bordered text-capitalize" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="text-center bg-success text-light">
                                             <th>Profile</th>
@@ -179,7 +179,7 @@
                                          @endforeach
                                      </tbody>
                                 </table>
-                                {{-- {{$datauser->links('pagination::bootstrap-4')}} --}}
+                                
                             </div>
                         </div>
                     </div>

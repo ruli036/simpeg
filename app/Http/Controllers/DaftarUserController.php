@@ -19,7 +19,7 @@ class DaftarUserController extends Controller
 {
     public function DaftarUser(Request $request)
     {
-        try{
+        // try{
         $request->validate([
             'email' => ['required', 'string', 'max:255','email'],
             'nik' => ['required', 'string', 'max:255','unique:users'],
@@ -33,6 +33,9 @@ class DaftarUserController extends Controller
             'status_karyawan' => 'required',
         ]);
         $datajabatan = Jabatan::where('id_jabatan',$request['jabatan'])->first();
+
+        $divisi =  DB::connection('finance')->table('master_divisi')->find($request['divisi']);
+         
         $bekerja = date('d-m-Y', strtotime($request['tgl_mulai_bekerja']));
        
             $lastID = User::orderBy('created_at', 'DESC')->first();
@@ -55,7 +58,8 @@ class DaftarUserController extends Controller
                     'tgl_mulai_bekerja' => $bekerja,
                     'pernikahan' => "-",
                     'no_hp' => '000',
-                    'divisi' => $request['divisi'],
+                    'id_divisi' => $request['divisi'],
+                    'divisi' => $divisi->nama,
                     'jabatan' => $datajabatan->jabatan,
                     'alamat' => "-",
                     'status' => $datajabatan->level,
@@ -80,9 +84,9 @@ class DaftarUserController extends Controller
                         CommandLog::insert($data); 
              
             return redirect()->back()->with(['info' => 'Akun Berhasil Dibuat']);
-        }catch (\Exception $e) {
-            return redirect()->back()->with(['warning' => $e->getMessage()]);
-        }               
+        // }catch (\Exception $e) {
+        //     return redirect()->back()->with(['warning' => $e->getMessage()]);
+        // }               
      }
       //profile karyawan tampilan untuk admin
       public function profile2($id){
@@ -90,7 +94,8 @@ class DaftarUserController extends Controller
             $aktive = "home";
               $datauser =  User::where("id",$id)->first();
               $jabatan = Jabatan::orderBy('jabatan','ASC')->get();
-        return view('pagesadmin.editdatauser',['datauser'=>$datauser,'aktive'=>$aktive,'jabatan'=>$jabatan]);
+              $divisi =  DB::connection('finance')->table('master_divisi')->where('stts','1')->get();
+        return view('pagesadmin.editdatauser',['datauser'=>$datauser,'aktive'=>$aktive,'jabatan'=>$jabatan,'divisi'=>$divisi]);
         }else{
             return redirect('/');
         }
@@ -121,6 +126,8 @@ class DaftarUserController extends Controller
         ]);
         $lahir = date('d-m-Y', strtotime($request['tgl_lahir']));
         $bekerja = date('d-m-Y', strtotime($request['tgl_mulai_bekerja']));
+        $divisi =  DB::connection('finance')->table('master_divisi')->find($request['divisi']);
+
         $datajabatan = Jabatan::where('id_jabatan',$request['jabatan'])->first();
        
             $result = User::find($id);
@@ -138,7 +145,8 @@ class DaftarUserController extends Controller
             $result->tgl_mulai_bekerja=  $bekerja;
             $result->pernikahan=  $request['pernikahan'];
             $result->no_hp=  $request['hp'];
-            $result->divisi=  $request['divisi'];
+            $result->id_divisi=  $request['divisi'];
+            $result->divisi=  $divisi->nama;
             $result->jabatan=  $datajabatan->jabatan;
             $result->alamat=  $request['alamat'];
             $result->status=   $datajabatan->level;
@@ -178,7 +186,7 @@ class DaftarUserController extends Controller
         $keyword = '';
         if(Auth::check()  && (Auth::user()->status == 1||Auth::user()->status == 2||Auth::user()->status == 4||Auth::user()->status == 0)){
             $datauser = User::where('status','!=','0')->where('status_kerja','1')->get();
-            return response()->json($datauser);
+            //  return response()->json($datauser);
         return view('pagesadmin.datauser ',['datauser'=>$datauser,'aktive'=>$aktive,'keyword'=>$keyword]);
         }else{
             return redirect('/');
@@ -202,7 +210,8 @@ class DaftarUserController extends Controller
         if(Auth::check()){
             $aktive = "componen";
             $jabatan = Jabatan::orderBy('jabatan','ASC')->get();
-            return view('pagesadmin.registeruser',['aktive'=>$aktive,'jabatan'=>$jabatan]);
+            $divisi =  DB::connection('finance')->table('master_divisi')->where('stts','1')->get();
+            return view('pagesadmin.registeruser',['aktive'=>$aktive,'jabatan'=>$jabatan,'divisi'=>$divisi]);
         }else{
             return redirect('/');
         }
@@ -229,7 +238,7 @@ class DaftarUserController extends Controller
        }
 
     public function editpassuser($id){
-            $result = User::find($id);
+             $result = User::find($id);
             $passnew = Hash::make(12345678);
             $result->password = $passnew;
             $result->save();

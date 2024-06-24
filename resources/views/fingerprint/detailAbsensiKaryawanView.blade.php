@@ -43,10 +43,11 @@
                                                 <tr class="text-center bg-success text-light">
                                                 <th>No</th>
                                                 <th>Tanggal</th>
-                                                <th>Nama</th>
-                                                <th>Masuk</th>
-                                                <th>Terlambat Masuk</th>
-                                                <th>Pulang</th>
+                                                <th>Pagi</th>
+                                                <th>Telat Masuk</th>
+                                                <th>Siang</th>
+                                                <th>Telat Masuk</th>
+                                                <th>Sore</th>
                                                 <th>Cepat Pulang</th>
                                                 <th>Hasil</th>
                                             </tr> 
@@ -63,11 +64,18 @@
                                             <tr>
                                                 <td class="text-center">{{$key += 1}}</td>
                                                  <td> {{$hari_indonesia}}, {{date('d F Y', strtotime($item->tgl_absen))}}</td>
-                                                 <td>{{$item->name}}</td>   
                                                  <td>{{$item->jam_masuk}}</td>   
                                                  <td class="@if($item->telat_masuk != 0) bg-warning text-light @endif">
                                                     @if ($item->telat_masuk != 0)
                                                     {{totalTerlambat($item->telat_masuk)}}
+                                                    @else
+                                                        0 seconds
+                                                    @endif
+                                                </td>   
+                                                 <td>{{$item->jam_siang}}</td>   
+                                                 <td class="@if($item->telat_kembali != 0) bg-warning text-light @endif">
+                                                    @if ($item->telat_kembali != 0)
+                                                    {{totalTerlambat($item->telat_kembali)}}
                                                     @else
                                                         0 seconds
                                                     @endif

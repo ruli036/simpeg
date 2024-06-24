@@ -71,14 +71,14 @@
                                 <table class="table table-sm table-bordered text-capitalize" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="text-center bg-success text-light">
-                                            <th>No</th>
+                                            <th width='2%' class="text-center">No</th>
                                             <th>NIK</th>
                                             <th>Nama</th>
                                             <th>JK</th>
-                                            <th>Jabatan</th>
                                             <th>Divisi</th>
                                             <th>Kehadiran</th>
                                             <th>Total Terlambat </th>
+                                            <th>Total Telat Siang </th>
                                             <th>Pulang Awal</th>
                                             <th>Detail</th>
                                         </tr>
@@ -90,9 +90,10 @@
                                                   
                                                  <td> {{$key += 1}}</td>
                                                  <td>{{$datas->nik}}</td>
-                                                 <td>{{$datas->name}}</td>
+                                                 <td>{{$datas->name}} <br>
+                                                    {{$datas->jabatan}}
+                                                </td>
                                                  <td>{{$datas->jk}}</td>
-                                                 <td>{{$datas->jabatan}}</td>
                                                  <td>{{$datas->divisi}}</td>
                                                  <td>
                                                     {{$datas->total_kehadiran??'0' }} <br>
@@ -100,6 +101,13 @@
                                                  <td class="@if ($datas->total_terlambat != 0)bg-warning text-light @endif">
                                                     @if ($datas->total_terlambat != 0)
                                                      {{totalTerlambat($datas->total_terlambat)}}
+                                                    @else
+                                                        0 seconds
+                                                    @endif
+                                                </td>
+                                                 <td class="@if ($datas->total_telat_siang != 0)bg-warning text-light @endif">
+                                                    @if ($datas->total_telat_siang != 0)
+                                                     {{totalTerlambat($datas->total_telat_siang)}}
                                                     @else
                                                         0 seconds
                                                     @endif

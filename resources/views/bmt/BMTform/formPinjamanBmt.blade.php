@@ -42,7 +42,6 @@
                                             <form id="surat" name="slip"  class="user" method="POST" action="{{url('ajukan-pinjaman')}}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="form-group">
-                                                    
                                                     <select class="form-control  @error('tabungan')is-invalid @enderror" id="type" value="{{ old('tabungan') }}"  name="tabungan" id="inputGroupSelect01" required>
                                                       <option disabled  selected value="0">Sumber Dana!</option>
                                                       <option value="1"{{old('tabungan')=="1"? 'selected':''}}>Pinjaman BMT</option>
