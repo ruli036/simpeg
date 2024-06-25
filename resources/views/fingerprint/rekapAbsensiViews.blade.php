@@ -73,6 +73,7 @@
                                         <tr class="text-center bg-success text-light">
                                             <th width='2%' class="text-center">No</th>
                                             <th>NIK</th>
+                                            
                                             <th>Nama</th>
                                             <th>JK</th>
                                             <th>Divisi</th>
