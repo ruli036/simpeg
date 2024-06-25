@@ -77,7 +77,7 @@
                                             <th>JK</th>
                                             <th>Divisi</th>
                                             <th>Kehadiran</th>
-                                            <th>Total Terlambat </th>
+                                            <th>Total Telat Masuk  </th>
                                             <th>Total Telat Siang </th>
                                             <th>Pulang Awal</th>
                                             <th>Detail</th>

@@ -53,6 +53,7 @@ class AbsensiKaryawanExport implements FromCollection,WithHeadings,ShouldAutoSiz
                  'Divisi' ,
                  'Kehadiran' ,
                  'Total Telat Datang ',
+                 'Total Telat Kembali ',
                  'Total Cepat Pulang ',
          ];
          $nama_hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
@@ -77,6 +78,7 @@ class AbsensiKaryawanExport implements FromCollection,WithHeadings,ShouldAutoSiz
 
         $select  = "a.nik, a.name, a.jabatan, a.divisi,SUM(IF(b.jumlah_hadir = 1,b.jumlah_hadir, 0)) as kehadiran,
          SEC_TO_TIME(CAST(SUM(b.telat_masuk) AS SIGNED)) as terlambat,
+         SEC_TO_TIME(CAST(SUM(b.telat_kembali) AS SIGNED)) as terlambat_kembali,
          SEC_TO_TIME(CAST(SUM(b.cepat_pulang) AS SIGNED)) as cepatpulang";
       
         while ($tglawal <= $tglakhir) {
