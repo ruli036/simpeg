@@ -301,6 +301,7 @@ class ControllerAbsensi extends Controller
             $akhir = $request['akhir']; 
             $select  = "a.id_absensi_karyawan,a.nik,a.name,a.jabatan,a.jk,a.tgl_mulai_bekerja,a.divisi,a.status_karyawan,SUM(IF(b.jumlah_hadir = 1,b.jumlah_hadir, 0)) as kehadiran,
             COALESCE(SUM(b.telat_masuk), 0) as total_terlambat,
+            COALESCE(SUM(b.telat_kembali), 0) as total_telat_siang,
             COALESCE(SUM(b.jumlah_hadir), 0) as total_kehadiran,
             COALESCE(SUM(b.cepat_pulang), 0) as total_cepat_pulang";
               
