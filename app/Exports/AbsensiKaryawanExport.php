@@ -83,7 +83,7 @@ class AbsensiKaryawanExport implements FromCollection,WithHeadings,ShouldAutoSiz
       
         while ($tglawal <= $tglakhir) {
             $tgl = $tglawal->format('Y-m-d');
-            $select .= ", MAX(CASE WHEN b.tgl_absen = '" . $tgl . "' THEN CONCAT(b.jam_masuk,' - ',b.jam_pulang) ELSE '-' END) as `" . $tgl . "`";
+            $select .= ", MAX(CASE WHEN b.tgl_absen = '" . $tgl . "' THEN CONCAT(b.jam_masuk,' - ',b.jam_siang,' - ',b.jam_pulang) ELSE '-' END) as `" . $tgl . "`";
             $tanggal_carbon = Carbon::parse($tglawal);
             $tglawal =  $tanggal_carbon->addDay();    
         }

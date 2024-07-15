@@ -205,7 +205,7 @@ class ControllerAbsensi extends Controller
             $aktive = "absensi";
             $data =[];
             $mulai = ""; 
-            $akhir = ""; 
+            $akhir = "";  
             return view('fingerprint.rekapAbsensiViews',['aktive'=>$aktive,'data'=>$data,'mulai'=>$mulai,'akhir'=>$akhir]);
         }else{
             return redirect('/');
