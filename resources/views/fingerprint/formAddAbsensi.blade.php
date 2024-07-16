@@ -87,8 +87,9 @@
                                                         <i class="fa fa-fingerprint"></i>
                                                         <span>Status Masuk </span>
                                                         <select class="form-control  @error('status_masuk')is-invalid @enderror" id="type" value="{{ old('status_masuk') }}"  name="status_masuk" id="inputGroupSelect01" required>
-                                                          <option selected value="0"  {{old('status_masuk')== '1' ? 'selected':''}}> Masuk</option>
-                                                          <option value= "1" {{old('status_masuk')== '1' ? 'selected':''}}>Pulang</option>                                                         
+                                                          <option selected value="0"  {{old('status_masuk')== '1' ? 'selected':''}}> Absen Masuk</option>
+                                                          <option value= "2" {{old('status_masuk')== '2' ? 'selected':''}}>Absen Siang</option>                                                         
+                                                          <option value= "1" {{old('status_masuk')== '1' ? 'selected':''}}>Absen Pulang</option>                                                         
                                                         </select>
                                                         @error('status_masuk')
                                                         <span class="invalid-feedback" role="alert">
