@@ -27,8 +27,8 @@
                                 @csrf
                                     <div class="form-group row">
                                             <div class="col-md-4">
-                                                <label for="">Dari Tanggal</label>
-                                                <input id="mulai" type="date" placeholder="Dari Tanggal" class="form-control form-control-user @error('mulai') is-invalid @enderror" name="mulai" value="{{ $mulai}}"  required >
+                                                <label for="">Dari Tanggal </label>
+                                                <input id="mulai" type="date" placeholder="Dari Tanggal" class="form-control form-control-user @error('mulai') is-invalid @enderror" name="mulai" value="{{ $mulai }}"  required >
                                                 @error('mulai')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

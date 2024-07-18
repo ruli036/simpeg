@@ -83,7 +83,7 @@ class ControllerSlipGaji extends Controller
         if(Auth::check()){
             $aktive ="slipGaji";
             $keyword ='';
-             $datas = MasterItemGaji::orderBy('colom','ASC')->paginate(10);      
+             $datas = MasterItemGaji::orderBy('stts','ASC')->orderBy('colom','ASC')->get();      
              $kodeRek =   DB::connection('finance')->table('rekening')->selectRaw("kode,nama")->orderBy('kode','ASC')->get();    
                 // return $kodeRek;
              return view('slipGaji.componentGaji',['aktive'=>$aktive,'datas'=>$datas,'kodeRek'=>$kodeRek,'keyword'=>$keyword]);
