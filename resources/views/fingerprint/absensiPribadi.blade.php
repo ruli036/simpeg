@@ -62,7 +62,6 @@
                                             <th>Divisi</th>
                                             <th>Kehadiran</th>
                                             <th>Total Telat Masuk  </th>
-                                            <th>Total Telat Siang </th>
                                             <th>Pulang Awal</th>
                                             <th>Detail</th>
                                         </tr>
@@ -84,13 +83,6 @@
                                                  <td class="@if ($datas->total_terlambat != 0)bg-warning text-light @endif">
                                                     @if ($datas->total_terlambat != 0)
                                                      {{totalTerlambat($datas->total_terlambat)}}
-                                                    @else
-                                                        0 seconds
-                                                    @endif
-                                                </td>
-                                                <td class="@if ($datas->total_telat_siang != 0)bg-warning text-light @endif">
-                                                    @if ($datas->total_telat_siang != 0)
-                                                     {{totalTerlambat($datas->total_telat_siang)}}
                                                     @else
                                                         0 seconds
                                                     @endif
