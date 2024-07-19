@@ -45,6 +45,7 @@
                                                 <th>Tanggal</th>
                                                 <th>Pagi</th>
                                                 <th>Telat Masuk</th>
+                                                <th>Siang</th>
                                                 <th>Sore</th>
                                                 <th>Cepat Pulang</th>
                                                 <th>Hasil</th>
@@ -70,6 +71,7 @@
                                                         0 seconds
                                                     @endif
                                                 </td>   
+                                                 <td>{{$item->jam_siang}}</td>   
                                                  <td>{{$item->jam_pulang}}</td>   
                                                  <td class="@if($item->cepat_pulang != 0) bg-warning text-light @endif"> 
                                                     @if ($item->cepat_pulang != 0)
