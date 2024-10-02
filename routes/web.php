@@ -15,14 +15,17 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
- 
-Route::get('pdfview',array('as'=>'pdfview','uses'=>'ItemController@pdfview'));
- 
+// Auth::routes();
+Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+// Route::get('pdfview',array('as'=>'pdfview','uses'=>'ItemController@pdfview'));
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
- 
- 
+
+
 Route::get('generate-pdf/{id}', [ControllerUmum::class, 'generatePDF']);
 Route::get('SlipGajiPdf/{id}/{periode}', [ControllerUmum::class, 'SlipGajiPdf']);
 
@@ -32,14 +35,14 @@ Route::get('/halamangantipass', [App\Http\Controllers\ControllerCek::class, 'hal
 Route::get('/halamanajukansurat', [App\Http\Controllers\ControllerCek::class, 'halamanajukansurat']);
 Route::get('/dataftarsurattunggu', [App\Http\Controllers\ControllerCek::class, 'dataftarsurattunggu']);
 Route::get('/dataftarsurattungguOB', [App\Http\Controllers\ControllerCek::class, 'dataftarsurattungguOB']);
- 
+
 //rekom1
 Route::post('/setuju/{id}', [App\Http\Controllers\ControllerCek::class, 'setuju']);
 Route::post('/ditolak/{id}', [App\Http\Controllers\ControllerCek::class, 'ditolak']);
 // rekom2
 Route::post('/setujuOB/{id}', [App\Http\Controllers\ControllerCek::class, 'setujuOb']);
 Route::post('/ditolakOB/{id}', [App\Http\Controllers\ControllerCek::class, 'ditolakOb']);
- 
+
 
 //route halaman karyawan
 Route::get('/profile', [App\Http\Controllers\ControllerKaryawan::class, 'profile']);
@@ -219,9 +222,6 @@ Route::get('/hapus akun nse/{id}', [App\Http\Controllers\DaftarUserController::c
 
 // route lupa password
 Route::get('forget-password', [App\Http\Controllers\ResetPassController::class, 'showForgetPasswordForm'])->name('forgetPasswordForm');
-Route::post('forget-password', [App\Http\Controllers\ResetPassController::class, 'submitForgetPasswordForm'])->name('submitresetpass'); 
+Route::post('forget-password', [App\Http\Controllers\ResetPassController::class, 'submitForgetPasswordForm'])->name('submitresetpass');
 Route::get('reset-password/{token}', [App\Http\Controllers\ResetPassController::class, 'showResetPasswordForm'])->name('resetPasswordForm');
 Route::post('reset-password', [App\Http\Controllers\ResetPassController::class, 'submitResetPasswordForm'])->name('submitResetPassword');
-
-
-

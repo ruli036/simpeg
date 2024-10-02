@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +14,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -36,67 +33,70 @@
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block"><img style="padding-top: 20px" src="{{asset('img/logo.png')}}" width="80%" > </div>
-                            <div class="col-lg-6">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-lg-5 text-center d-none d-lg-block">
+                                <img class="img-fluid" src="{{asset('img/logo.png')}}" width="80%">
+                            </div>
+                            <div class="col-lg-7">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
+                                        <h4 class="text-gray-900 mb-2">Sekolah Al-Azhar Cairo Banda Aceh</h4>
+                                        <h5 class="text-gray-900 mb-4">Sistem Informasi Kepegawaian</h5>
                                     </div>
-                                    @if ($message = Session::get('info'))
+                                    @if (session('info'))
                                     <div class="alert alert-info alert-block">
-                                      <button type="button" class="close" data-dismiss="alert">×</button>    
-                                      <strong>{{ $message }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        {{ session('info') }}
                                     </div>
-                                    @endif 
-                                    @if ($message = Session::get('warning'))
+                                    @endif
+                                    @if (session('warning'))
                                     <div class="alert alert-warning alert-block">
-                                      <button type="button" class="close" data-dismiss="alert">×</button>    
-                                      <strong>{{ $message }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        {{ session('warning') }}
                                     </div>
                                     @endif
-                                     @if ($message = Session::get('danger'))
+                                    @if (session('danger'))
                                     <div class="alert alert-danger alert-block">
-                                      <button type="button" class="close" data-dismiss="alert">×</button>    
-                                      <strong>{{ $message }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        {{ session('danger') }}
                                     </div>
                                     @endif
-                                        <form id="login" class="user" method="POST" action="{{route('login')}}">
-                                            @csrf
+                                    <form id="login" class="user" method="POST" action="{{route('login')}}">
+                                        @csrf
                                         <div class="form-group">
                                             <input id="nik" type="text" onkeydown="disableAlphabets(event)" class="form-control form-control-user @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autofocus placeholder="Nomor NIK">
                                             @error('nik')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                             <input id="password" type="password"  onkeydown="disableSymbols(event)" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"  placeholder="Password" required>
+                                            <input id="password" type="password" onkeydown="disableSymbols(event)" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password" required>
 
                                             @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                               
-                                                    <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                
-                                                    <label class="custom-control-label" for="remember">
-                                                        {{ __('Remember Me') }}
-                                                    </label>
+
+                                                <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                                <label class="custom-control-label" for="remember">
+                                                    {{ __('Remember Me') }}
+                                                </label>
                                             </div>
                                         </div>
-                                        
+
                                         <button id="go" type="submit" class="btn btn-primary btn-user btn-block">
                                             {{ __('Login') }}
                                         </button>
                                         <hr>
-                                             <a class="nav-link d-flex justify-content-end" style="font-size: 12px" href="{{ route('forgetPasswordForm') }}">{{ __('Forgot Password!') }}</a>
-                                     </form>
+                                        <a class="nav-link d-flex justify-content-end" style="font-size: 12px" href="{{ route('forgetPasswordForm') }}">{{ __('Forgot Password!') }}</a>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
         </div>
 
     </div>
-    
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -119,16 +119,16 @@
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
     <script src="{{asset('js/loadingoverlay/loadingoverlay.min.js')}}"></script>
     <script>
-   
+
         $(document).ready(function () {
-            $("button#go").click(function(e){
+            $("button#go").click(function (e) {
                 e.preventDefault();
-                    document.getElementById("login").submit();
-                    $.LoadingOverlay("show");
-                    });
+                document.getElementById("login").submit();
+                $.LoadingOverlay("show");
+            });
         });
         function disableSymbols(event) {
-            var prohibitedKeys = ["+", "?", "=","/","<",">","[","]"];
+            var prohibitedKeys = ["+", "?", "=", "/", "<", ">", "[", "]"];
 
             if (prohibitedKeys.includes(event.key)) {
                 event.preventDefault();
@@ -136,7 +136,7 @@
         }
         function disableAlphabets(event) {
             var charCode = event.which || event.keyCode;
-            var prohibitedKeys = ["+", "?", "=","/","<",">","[","]"];
+            var prohibitedKeys = ["+", "?", "=", "/", "<", ">", "[", "]"];
             if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
                 event.preventDefault();
             }
