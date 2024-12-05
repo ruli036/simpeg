@@ -155,6 +155,7 @@ class DaftarUserController extends Controller
             $result->alamat =  $request['alamat'];
             $result->status =   $datajabatan->level;
             $result->status_karyawan =  $request['status_karyawan'];
+            $result->multidivisi =  $request['multidivisi'];
             $result->save();
 
             Http::post(env('APP_URLLMS') . 'updateUser', [
