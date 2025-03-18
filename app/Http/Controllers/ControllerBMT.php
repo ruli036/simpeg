@@ -757,7 +757,7 @@ class ControllerBMT extends Controller
                     ->where('id_anggota_bmt', '=', $request['id_anggota_bmt'])
                     ->first();
                 $update = AnggotaBMT::find($request['id_anggota_bmt']);
-                $totalPenarikan = PenarikanWadiah::where('id_karyawan', '=', $update->id_karyawan)->sum('nominal');
+                $totalPenarikan = PenarikanWadiah::where('id_karyawan', '=', $update->id_karyawan)->where('setuju1', '=', 0)->sum('nominal');
                 $update->saldo_bmt = $totalSaldo->saldo_bmt;
                 $update->saldo_wadiah = ($totalSaldo->saldo_wadiah - $totalPenarikan);
                 $update->save();
@@ -829,7 +829,7 @@ class ControllerBMT extends Controller
                     ->where('id_anggota_bmt', '=', $result->id_anggota_bmt)
                     ->first();
                 $update = AnggotaBMT::find($result->id_anggota_bmt);
-                $totalPenarikan = PenarikanWadiah::where('id_karyawan', '=', $update->id_karyawan)->sum('nominal');
+                $totalPenarikan = PenarikanWadiah::where('id_karyawan', '=', $update->id_karyawan)->where('setuju1', '=', 0)->sum('nominal');
                 $update->saldo_bmt = $totalSaldo->saldo_bmt;
                 $update->saldo_wadiah = ($totalSaldo->saldo_wadiah - $totalPenarikan);
                 $update->save();
@@ -978,7 +978,7 @@ class ControllerBMT extends Controller
                 ->where('id_anggota_bmt', '=', $GetId)
                 ->first();
             $update = AnggotaBMT::find($GetId);
-            $totalPenarikan = PenarikanWadiah::where('id_karyawan', '=', $update->id_karyawan)->sum('nominal');
+            $totalPenarikan = PenarikanWadiah::where('id_karyawan', '=', $update->id_karyawan)->where('setuju1', '=', 0)->sum('nominal');
             $update->saldo_bmt = $totalSaldo->saldo_bmt;
             $update->saldo_wadiah = ($totalSaldo->saldo_wadiah - $totalPenarikan);
             $update->save();
@@ -1053,7 +1053,7 @@ class ControllerBMT extends Controller
                     ->where('id_anggota_bmt', '=', $id_anggota_bmt)
                     ->first();
                 $update = AnggotaBMT::find($id_anggota_bmt);
-                $totalPenarikan = PenarikanWadiah::where('id_karyawan', '=', $update->id_karyawan)->sum('nominal');
+                $totalPenarikan = PenarikanWadiah::where('id_karyawan', '=', $update->id_karyawan)->where('setuju1', '=', 0)->sum('nominal');
                 $update->saldo_wadiah = ($totalSaldo->saldo_wadiah - $totalPenarikan);
                 $update->total_penarikan = ($update->total_penarikan - $jumlah_penarikan);
                 $update->save();
